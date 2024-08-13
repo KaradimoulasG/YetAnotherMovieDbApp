@@ -1,0 +1,120 @@
+import com.android.build.api.dsl.Packaging
+
+plugins {
+    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-kapt")
+}
+
+android {
+    namespace 'com.example.yetanothermoviedbapp'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.example.yetanothermoviedbapp"
+        minSdk 28
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        viewBinding = true
+        compose = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.8"
+    }
+
+    packaging {
+        resources {
+            it.excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            it.excludes += "META-INF/atomicfu.kotlin_module"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    kapt {
+        correctErrorTypes = true
+        useBuildCache = true
+    }
+}
+
+dependencies {
+
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    implementation libs.androidx.activity
+    implementation libs.androidx.constraintlayout
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+    implementation libs.androidx.swiperefreshlayout
+    implementation libs.androidx.navigation.fragment.ktx
+
+    // Room
+    implementation libs.androidx.room.runtime
+    kapt libs.androidx.room.compiler.v252
+    implementation libs.androidx.room.ktx
+    androidTestImplementation libs.testing
+
+    // Koin main features for Android
+    implementation libs.koin.core
+    implementation libs.koin.android
+    implementation libs.koin.android.compat
+
+    // Retrofit
+    implementation libs.okhttp
+    implementation libs.grpc.okhttp
+    implementation libs.logging.interceptor
+    implementation libs.retrofit
+    implementation libs.converter.gson
+    implementation libs.converter.moshi
+
+    // Material Components
+    implementation libs.material.v190
+    implementation libs.androidx.material3
+    implementation("androidx.compose.material3:material3-window-size-class:1.2.1")
+
+    // ViewModel
+    implementation libs.androidx.lifecycle.viewmodel.ktx
+    implementation libs.androidx.lifecycle.runtime.ktx
+    implementation libs.androidx.lifecycle.viewmodel.savedstate
+
+    // Compose
+//    implementation("androidx.compose.ui:ui-tooling-preview")
+//    debugImplementation("androidx.compose.ui:ui-tooling")
+    implementation libs.koin.androidx.compose
+    implementation libs.androidx.material3.v120alpha07
+    implementation libs.androidx.activity.compose
+    implementation libs.androidx.material
+    implementation libs.androidx.animation
+    implementation libs.androidx.ui.tooling
+
+    // Timber
+    implementation libs.timber
+
+    // Glide
+    implementation libs.glide
+    implementation libs.okhttp.integration
+    annotationProcessor libs.compiler
+}
