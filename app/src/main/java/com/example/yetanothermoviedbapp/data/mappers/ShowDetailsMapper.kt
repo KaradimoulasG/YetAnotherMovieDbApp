@@ -17,5 +17,7 @@ object ShowDetailsMapper: Mapper<ShowDetailsDto, ShowDetails> {
             summary = model.summary
         )
 
-    override fun domainToModel(domainModel: ShowDetails): ShowDetailsDto { }
+    override fun domainToModel(domainModel: ShowDetails): ShowDetailsDto {
+        TODO("Not yet implemented")
+    }
 }
