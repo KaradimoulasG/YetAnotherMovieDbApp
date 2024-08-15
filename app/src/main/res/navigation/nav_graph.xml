@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/showsListFragment">
+    <fragment
+        android:id="@+id/showsListFragment"
+        android:name="com.example.yetanothermoviedbapp.presentation.showsList.ShowsListFragment"
+        android:label="fragment_shows_list"
+        tools:layout="@layout/fragment_shows_list" />
+</navigation>
