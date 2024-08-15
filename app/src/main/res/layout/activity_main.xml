@@ -16,11 +16,4 @@
         app:defaultNavHost="true"
         android:name="androidx.navigation.fragment.NavHostFragment" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Something here"
-        android:textColor="@color/material_dynamic_neutral70"
-        android:gravity="center" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

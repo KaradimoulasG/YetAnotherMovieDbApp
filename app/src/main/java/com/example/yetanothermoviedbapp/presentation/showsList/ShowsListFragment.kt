@@ -5,8 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewbinding.ViewBinding
+import com.example.yetanothermoviedbapp.R
+import com.example.yetanothermoviedbapp.common.Constants.SHOW_ID
 import com.example.yetanothermoviedbapp.common.components.ShimmerCardView
 import com.example.yetanothermoviedbapp.common.hide
 import com.example.yetanothermoviedbapp.common.show
@@ -26,7 +29,7 @@ class ShowsListFragment : BindingFragment<FragmentShowsListBinding>() {
         get() = FragmentShowsListBinding::inflate
 
     private val viewModel: ShowsListViewModel by sharedViewModel()
-    private val showsListAdapter by lazy { ShowsListAdapter(layoutInflater, ::scrolledToItemsEnd, ::onShowsClick) }
+    private val showsListAdapter by lazy { ShowsListAdapter(layoutInflater, ::onShowClick) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -58,9 +61,9 @@ class ShowsListFragment : BindingFragment<FragmentShowsListBinding>() {
                     ShowsListViewModelEvents.Loading -> {
                         showsListAdapter.clear()
                         binding.shimmerView.show()
-                    } //show Shimmer
-                    ShowsListViewModelEvents.Success -> { updateViews(viewModel.state.value.items) } //show Error if there are shows
-                    ShowsListViewModelEvents.Error -> { } //show Items
+                    }
+                    ShowsListViewModelEvents.Success -> { updateViews(viewModel.state.value.items) }
+                    ShowsListViewModelEvents.Error -> { }
                     else -> {}
                 }
             }.launchIn(this)
@@ -74,11 +77,13 @@ class ShowsListFragment : BindingFragment<FragmentShowsListBinding>() {
             movieRefresher.isRefreshing = false
             offlineUiTv.hide()
         }
-        timber.log.Timber.i("PAOK here with the items ${items}")
         showsListAdapter.addAll(items)
     }
 
-    private fun scrolledToItemsEnd() {}
-
-    private fun onShowsClick(showsId: Int) {}
+    private fun onShowClick(showId: Int) {
+        val args = Bundle().apply {
+            putInt(SHOW_ID, showId)
+        }
+        findNavController().navigate(R.id.action_showsListFragment_to_showDetailsFragment, args)
+    }
 }

@@ -58,11 +58,11 @@ fun ShimmerCardView() {
 @Preview
 @Composable
 fun ShimmerCardPreview() {
-    ShimmerSingleMovie(brush = createShimmerAnimation())
+    ShimmerShowDetails(brush = createShimmerAnimation())
 }
 
 @Composable
-fun ShimmerSingleMovie(brush: Brush = createShimmerAnimation(), widthFraction: Float = 1f) {
+fun ShimmerShowDetails(brush: Brush = createShimmerAnimation(), widthFraction: Float = 1f) {
     ShimmerCard(height = 100f, brush = brush, widthFraction = 1f)
     Spacer(modifier = Modifier.size(12.dp))
     (0..10).forEach { _ ->

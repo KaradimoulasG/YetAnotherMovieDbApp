@@ -12,6 +12,6 @@ interface TvMazeApi {
 
     @GET("/shows/{id}")
     suspend fun getShowDetails(
-        @Path("show_id") id: Int
+        @Path("id") id: Int
     ) : ShowDetailsDto
 }

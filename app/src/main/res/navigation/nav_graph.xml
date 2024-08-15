@@ -8,5 +8,14 @@
         android:id="@+id/showsListFragment"
         android:name="com.example.yetanothermoviedbapp.presentation.showsList.ShowsListFragment"
         android:label="fragment_shows_list"
-        tools:layout="@layout/fragment_shows_list" />
+        tools:layout="@layout/fragment_shows_list" >
+        <action
+            android:id="@+id/action_showsListFragment_to_showDetailsFragment"
+            app:destination="@id/showDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/showDetailsFragment"
+        android:name="com.example.yetanothermoviedbapp.presentation.showDetails.ShowDetailsFragment"
+        android:label="fragment_show_details"
+        tools:layout="@layout/fragment_show_details" />
 </navigation>

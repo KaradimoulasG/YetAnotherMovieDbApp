@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -14,12 +15,11 @@ import com.example.yetanothermoviedbapp.domain.models.ShowsListItem
 
 class ShowsListAdapter(
     private val layoutInflater: LayoutInflater,
-    private val scrolledToEnd: () -> Unit,
-    private val onShowsClick: (Int) -> Unit
+    private val onShowClick: (Int) -> Unit
 ) : ListAdapter<ShowsListItem, ShowsListAdapter.ShowsViewHolder>(DiffCallBack()) {
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ShowsViewHolder(layoutInflater, parent, onShowsClick)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ShowsViewHolder(layoutInflater, parent)
     override fun onBindViewHolder(holder: ShowsViewHolder, position: Int) = holder.bind(holder, position)
     fun clear() = submitList(null)
     fun addAll(items: List<ShowsListItem>) = submitList(items)
@@ -31,25 +31,23 @@ class ShowsListAdapter(
 
     inner class ShowsViewHolder(
         layoutInflater: LayoutInflater,
-        parentView: ViewGroup,
-        private val onShowsClick: (Int) -> Unit
+        parentView: ViewGroup
     ) : ViewHolder(layoutInflater.inflate(R.layout.shows_list_adapter_item, parentView, false)) {
-        private var moviePoster: ImageView = itemView.findViewById(R.id.movie_poster_iv)
-        private var movieTitle: TextView = itemView.findViewById(R.id.movie_title_tv)
+        private var showPoster: ImageView = itemView.findViewById(R.id.show_poster_iv)
+        private var showTitle: TextView = itemView.findViewById(R.id.show_title_tv)
         private var rating: RatingBar = itemView.findViewById(R.id.ratingBar)
-        private var releaseDate: TextView = itemView.findViewById(R.id.release_date_iv)
-
+        private var posterCard: CardView = itemView.findViewById(R.id.poster_card)
 
         fun bind(holder: ShowsViewHolder, pos: Int) {
-
-            val items = currentList[pos]
+            val item = currentList[pos]
             val context = holder.itemView.context
-            if (pos == itemCount - 7) scrolledToEnd()
 
-            Glide.with(context).load(items.image.original).into(holder.moviePoster)
+            Glide.with(context).load(item.image.original).into(holder.showPoster)
 
-            movieTitle.text = items.name
-            rating.rating = items.rating.average.toFloat() / 2
+            showTitle.text = item.name
+            rating.rating = item.rating.average.toFloat() / 2
+
+            posterCard.setOnClickListener { onShowClick(item.id) }
         }
 
     }

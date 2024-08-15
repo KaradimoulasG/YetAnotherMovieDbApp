@@ -3,6 +3,7 @@ package com.example.yetanothermoviedbapp.common
 object Constants {
 
     const val BASE_URL = "https://api.tvmaze.com/"
+    const val SHOW_ID = "show id"
 }
 
 object ErrorMessages {

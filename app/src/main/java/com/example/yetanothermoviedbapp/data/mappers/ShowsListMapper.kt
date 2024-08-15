@@ -20,10 +20,10 @@ object ShowsListMapper : Mapper<List<ShowsDtoItem>, List<ShowsListItem>> {
         }
 
 
-    private fun RatingDto.toRating() =
+    fun RatingDto.toRating() =
         Rating(average = average)
 
-    private fun ImageDto.toImage() =
+    fun ImageDto.toImage() =
         Image(
             medium = medium,
             original = original
