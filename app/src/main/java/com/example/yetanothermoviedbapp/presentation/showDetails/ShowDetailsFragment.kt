@@ -62,15 +62,6 @@ class ShowDetailsFragment : BindingFragment<FragmentShowDetailsBinding>() {
                     ShowDetailsViewModelEvents.Loading -> { binding.shimmerView.show() }
                     ShowDetailsViewModelEvents.Success -> { updateViews(viewModel.state.value.showDetails) }
                     ShowDetailsViewModelEvents.Error -> {
-                        binding.toasty.apply {
-                            setContent {
-                                TopToast(
-                                    modifier = Modifier,
-                                    message = "Something over here",
-                                    messageType = MessageType.DEFAULT
-                                )
-                            }
-                        }
                         showDialog(
                             requireContext(),
                             getString(R.string.dialog_title),
@@ -104,7 +95,7 @@ class ShowDetailsFragment : BindingFragment<FragmentShowDetailsBinding>() {
                 }
             }
 
-            Glide.with(requireContext()).load(showDetails?.image?.medium).into(showPosterIv)
+            Glide.with(requireContext()).load(showDetails?.image?.original).into(showPosterIv)
             descriptionDetailsTv.text = Html.fromHtml(showDetails?.summary, HtmlCompat.FROM_HTML_MODE_COMPACT)
             ratingBar.rating = (showDetails?.rating?.average?.toFloat()?.div(2) ?: 0) as Float
         }
