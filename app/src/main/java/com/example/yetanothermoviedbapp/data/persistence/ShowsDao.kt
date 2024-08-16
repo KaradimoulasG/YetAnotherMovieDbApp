@@ -13,5 +13,5 @@ interface ShowsDao {
     suspend fun saveShowsList(list: List<ShowsListItem>)
 
     @Query("SELECT * FROM ShowsListItem")
-    fun getSavedShows(): Flow<List<ShowsListItem>>
+    suspend fun getSavedShows(): Flow<List<ShowsListItem>>
 }

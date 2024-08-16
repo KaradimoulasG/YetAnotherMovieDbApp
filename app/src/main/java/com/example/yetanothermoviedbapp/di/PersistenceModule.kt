@@ -13,6 +13,7 @@ val PersistenceModule = module {
             AppDatabase::class.java,
             "appDatabase",
         ).fallbackToDestructiveMigration()
+            .allowMainThreadQueries()
             .build()
     }
 

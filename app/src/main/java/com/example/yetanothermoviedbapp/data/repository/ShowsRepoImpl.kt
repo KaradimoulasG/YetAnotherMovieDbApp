@@ -2,7 +2,6 @@ package com.example.yetanothermoviedbapp.data.repository
 
 import com.example.yetanothermoviedbapp.data.persistence.ShowsDao
 import com.example.yetanothermoviedbapp.data.remote.TvMazeApi
-import com.example.yetanothermoviedbapp.data.remote.dto.showsDto.ShowsDtoItem
 import com.example.yetanothermoviedbapp.domain.repository.ShowsRepo
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -29,7 +28,7 @@ class ShowsRepoImpl(
 //                it?.isEmpty() ?: true
 //            }
 //        )
-    override suspend fun getShowsList(): List<ShowsDtoItem> =
+    override suspend fun getShowsList() =
         api.getShows()
 
     override suspend fun getShowDetails(showId: Int) =
