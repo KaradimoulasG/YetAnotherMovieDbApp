@@ -22,10 +22,10 @@ class ShowsListViewModel(
         _state.value = ShowsListState()
     }
 
-    fun getShowsList() {
+    fun getShowsList(shouldRefresh: Boolean) {
         _state.update { it.copy(eventName = ShowsListViewModelEvents.Loading) }
 
-        getShowsListUseCase().onEach { result ->
+        getShowsListUseCase(shouldRefresh).onEach { result ->
             when (result) {
                 is Resource.Error -> _state.update { it.copy(eventName = ShowsListViewModelEvents.Error) }
                 is Resource.Loading -> _state.update { it.copy(eventName = ShowsListViewModelEvents.Loading) }

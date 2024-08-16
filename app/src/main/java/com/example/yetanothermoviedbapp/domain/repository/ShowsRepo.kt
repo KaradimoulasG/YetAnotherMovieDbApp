@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface ShowsRepo {
 
-    suspend fun getShowsList() : List<ShowsListItem>
+    suspend fun getShowsList(shouldRefresh: Boolean) : List<ShowsListItem>
 
     suspend fun getShowDetails(showId: Int) : ShowDetailsDto
 }

@@ -129,4 +129,7 @@ dependencies {
     implementation libs.glide
     implementation libs.okhttp.integration
     annotationProcessor libs.compiler
+
+    //Toasty
+    implementation 'com.github.KaradimoulasG:Toasty:0.0.4'
 }

@@ -7,6 +7,7 @@ buildscript {
     repositories {
         mavenCentral()
         google()
+        maven { url 'https://jitpack.io' }
     }
 }
 
@@ -14,6 +15,4 @@ plugins {
     alias(libs.plugins.androidApplication) apply false
     alias(libs.plugins.jetbrainsKotlinAndroid) apply false
     id("com.android.library") version "8.0.2" apply false
-//    alias(libs.plugins.compose.compiler) apply false
-//    id "org.jetbrains.kotlin.kapt" version "2.0.10"
 }

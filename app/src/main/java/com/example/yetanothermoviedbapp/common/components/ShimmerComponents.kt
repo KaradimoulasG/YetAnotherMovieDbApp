@@ -70,3 +70,8 @@ fun ShimmerShowDetails(brush: Brush = createShimmerAnimation(), widthFraction: F
         Spacer(modifier = Modifier.size(8.dp))
     }
 }
+
+@Composable
+fun showTopToast() {
+
+}

@@ -3,6 +3,7 @@ package com.example.yetanothermoviedbapp.data.repository
 import com.example.yetanothermoviedbapp.data.mappers.ShowsListMapper
 import com.example.yetanothermoviedbapp.data.persistence.ShowsDao
 import com.example.yetanothermoviedbapp.data.remote.TvMazeApi
+import com.example.yetanothermoviedbapp.domain.models.ShowsListItem
 import com.example.yetanothermoviedbapp.domain.repository.ShowsRepo
 import org.koin.core.component.KoinComponent
 
@@ -28,14 +29,27 @@ class ShowsRepoImpl(
 //            it?.isEmpty() ?: true
 //        }
 
-    override suspend fun getShowsList() =
-        dao.getSavedShows().ifEmpty {
-            val showsList = api.getShows().let {
-                ShowsListMapper.modelToDomain(it)
+    override suspend fun getShowsList(shouldRefresh: Boolean): List<ShowsListItem> {
+
+        return when (shouldRefresh) {
+            true ->
+                api.getShows().let {
+                    ShowsListMapper.modelToDomain(it)
+                }
+
+            false -> {
+                if(dao.getSavedShows().isEmpty()) {
+                    val showsList = api.getShows().let {
+                        ShowsListMapper.modelToDomain(it)
+                    }
+                    dao.saveShowsList(showsList)
+                    return showsList
+                } else {
+                    return dao.getSavedShows()
+                }
             }
-            dao.saveShowsList(showsList)
-            showsList
         }
+    }
 
 
     override suspend fun getShowDetails(showId: Int) =

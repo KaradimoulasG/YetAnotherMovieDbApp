@@ -35,7 +35,7 @@ class ShowsListFragment : BindingFragment<FragmentShowsListBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getShowsList()
+        viewModel.getShowsList(false)
         setUpUi()
         observeViewModel()
     }
@@ -52,7 +52,7 @@ class ShowsListFragment : BindingFragment<FragmentShowsListBinding>() {
             show()
         }
 
-        binding.showRefresher.setOnRefreshListener { viewModel.getShowsList() }
+        binding.showRefresher.setOnRefreshListener { viewModel.getShowsList(true) }
     }
 
     private fun observeViewModel() {
