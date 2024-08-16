@@ -13,6 +13,7 @@ import com.example.yetanothermoviedbapp.common.Constants.SHOW_ID
 import com.example.yetanothermoviedbapp.common.components.ShimmerCardView
 import com.example.yetanothermoviedbapp.common.hide
 import com.example.yetanothermoviedbapp.common.show
+import com.example.yetanothermoviedbapp.common.showDialog
 import com.example.yetanothermoviedbapp.databinding.FragmentShowsListBinding
 import com.example.yetanothermoviedbapp.domain.models.ShowsListItem
 import com.example.yetanothermoviedbapp.presentation.BindingFragment
@@ -40,7 +41,7 @@ class ShowsListFragment : BindingFragment<FragmentShowsListBinding>() {
     }
 
     private fun setUpUi() {
-        binding.moviesListRv.apply {
+        binding.showListRv.apply {
             layoutManager = LinearLayoutManager(activity?.applicationContext)
             adapter = showsListAdapter
         }
@@ -51,7 +52,7 @@ class ShowsListFragment : BindingFragment<FragmentShowsListBinding>() {
             show()
         }
 
-        binding.movieRefresher.setOnRefreshListener { viewModel.getShowsList() }
+        binding.showRefresher.setOnRefreshListener { viewModel.getShowsList() }
     }
 
     private fun observeViewModel() {
@@ -63,7 +64,15 @@ class ShowsListFragment : BindingFragment<FragmentShowsListBinding>() {
                         binding.shimmerView.show()
                     }
                     ShowsListViewModelEvents.Success -> { updateViews(viewModel.state.value.items) }
-                    ShowsListViewModelEvents.Error -> { }
+                    ShowsListViewModelEvents.Error -> {
+                        showDialog(
+                            requireContext(),
+                            getString(R.string.dialog_title),
+                            getString(R.string.dialog_message),
+                            getString(R.string.dialog_declne_button),
+                            getString(R.string.dialog_accept_button)
+                        )
+                    }
                     else -> {}
                 }
             }.launchIn(this)
@@ -73,8 +82,8 @@ class ShowsListFragment : BindingFragment<FragmentShowsListBinding>() {
     private fun updateViews(items: List<ShowsListItem>) {
         binding.apply {
             shimmerView.hide()
-            moviesListRv.show()
-            movieRefresher.isRefreshing = false
+            showListRv.show()
+            showRefresher.isRefreshing = false
             offlineUiTv.hide()
         }
         showsListAdapter.addAll(items)

@@ -30,12 +30,12 @@
         android:text="something" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/movie_refresher"
+        android:id="@+id/show_refresher"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/movies_list_rv"
+            android:id="@+id/show_list_rv"
             android:layout_width="match_parent"
             android:visibility="visible"
             android:layout_height="wrap_content" />

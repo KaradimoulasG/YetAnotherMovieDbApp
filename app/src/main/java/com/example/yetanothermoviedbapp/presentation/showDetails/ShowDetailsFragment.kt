@@ -10,10 +10,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.bumptech.glide.Glide
+import com.example.yetanothermoviedbapp.R
 import com.example.yetanothermoviedbapp.common.Constants.SHOW_ID
 import com.example.yetanothermoviedbapp.common.components.ShimmerShowDetails
 import com.example.yetanothermoviedbapp.common.hide
 import com.example.yetanothermoviedbapp.common.show
+import com.example.yetanothermoviedbapp.common.showDialog
 import com.example.yetanothermoviedbapp.databinding.FragmentShowDetailsBinding
 import com.example.yetanothermoviedbapp.domain.models.ShowDetails
 import com.example.yetanothermoviedbapp.presentation.BindingFragment
@@ -56,7 +58,15 @@ class ShowDetailsFragment : BindingFragment<FragmentShowDetailsBinding>() {
                 when (state.eventName) {
                     ShowDetailsViewModelEvents.Loading -> { binding.shimmerView.show() }
                     ShowDetailsViewModelEvents.Success -> { updateViews(viewModel.state.value.showDetails) }
-                    ShowDetailsViewModelEvents.Error -> {}
+                    ShowDetailsViewModelEvents.Error -> {
+                        showDialog(
+                            requireContext(),
+                            getString(R.string.dialog_title),
+                            getString(R.string.dialog_message),
+                            getString(R.string.dialog_declne_button),
+                            getString(R.string.dialog_accept_button)
+                            )
+                    }
                     else -> {}
                 }
             }.launchIn(this)

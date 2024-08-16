@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.Flow
 interface ShowsDao {
 
     @Upsert
-    suspend fun saveShowsList(list: List<ShowsListItem>)
+    fun saveShowsList(list: List<ShowsListItem>)
 
     @Query("SELECT * FROM ShowsListItem")
-    suspend fun getSavedShows(): Flow<List<ShowsListItem>>
+    fun getSavedShows(): List<ShowsListItem>
 }

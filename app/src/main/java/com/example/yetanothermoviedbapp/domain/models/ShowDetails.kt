@@ -1,5 +1,7 @@
 package com.example.yetanothermoviedbapp.domain.models
 
+import com.example.yetanothermoviedbapp.data.remote.dto.singleShowDto.ShowDetailsDto
+
 data class ShowDetails(
     val id: Int,
     val name: String,

@@ -8,10 +8,10 @@ import org.koin.core.component.inject
 
 class ShowsRepoImpl(
     private val api: TvMazeApi,
-//    private val dao: ShowsDao
+    private val dao: ShowsDao
 ) : ShowsRepo, KoinComponent {
 
-    private val dao: ShowsDao by inject()
+//    private val dao: ShowsDao by inject()
 
     //    override suspend fun getShowsList(): Flow<Resource<out List<ShowsList>?>> =
 //        networkBoundResource(

@@ -10,7 +10,7 @@ import org.koin.dsl.module
 
 val ShowsModule = module {
 
-    single<ShowsRepo> { ShowsRepoImpl(get()) }
+    single<ShowsRepo> { ShowsRepoImpl(get(), get()) }
 
     single { GetShowsListUseCase(get()) }
 

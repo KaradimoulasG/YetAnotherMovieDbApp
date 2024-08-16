@@ -78,8 +78,8 @@ dependencies {
     implementation libs.androidx.room.runtime
 //    annotationProcessor libs.androidx.room.compiler
 //    annotationProcessor libs.compiler.v100
-//    kapt libs.androidx.room.compiler.v252
-    kapt libs.room.compiler
+    kapt libs.androidx.room.compiler.v252
+//    kapt libs.room.compiler
     implementation libs.androidx.room.ktx
     implementation libs.androidx.room.rxjava2
     implementation libs.androidx.room.rxjava3
