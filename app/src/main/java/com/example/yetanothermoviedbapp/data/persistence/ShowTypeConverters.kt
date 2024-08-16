@@ -24,13 +24,4 @@ class ShowTypeConverters {
 
     @TypeConverter
     fun toRating(json: String) = gson.fromJson(json, Rating::class.java)
-
-//    @TypeConverter
-//    fun fromImage(image: ImageDto) = gson.toJson(image)
-//
-//    @TypeConverter
-//    fun toImage(json: String): ImageDto {
-//        val type = object : TypeToken<ImageDto>() {}.type
-//        return gson.fromJson(json, type)
-//    }
 }

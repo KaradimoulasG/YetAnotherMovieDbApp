@@ -1,5 +1,6 @@
 package com.example.yetanothermoviedbapp.common
 
+import com.example.yetanothermoviedbapp.domain.models.ShowsListItem
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.first
